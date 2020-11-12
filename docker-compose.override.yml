@@ -13,6 +13,7 @@ services:
    environment:
      - ASPNETCORE_ENVIRONMENT=Docker
      - ASPNETCORE_URLS=http://+:80
+     - CatalogBaseUrl=http://localhost:5106
    ports:
      - "5200:80"
    volumes:
