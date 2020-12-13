@@ -34,14 +34,15 @@ namespace Microsoft.eShopWeb.PublicApi.BasketEndpoints
 
         [HttpGet("api/basket")]
         [SwaggerOperation(
-            Summary = "Adds a Catalog Item to Basket",
-            Description = "Adds a Catalog Item to Basket",
+            Summary = "List Basket",
+            Description = "List Basket",
             OperationId = "basket.list",
             Tags = new[] { "BasketEndpoints" })
         ]
         public override async Task<ActionResult<ListBasketResponse>> HandleAsync(CancellationToken cancellationToken)
         {
-            return Ok(GetOrCreateBasketForUser(User.Identity.Name));
+            var basket = await GetOrCreateBasketForUser(User.Identity.Name);
+            return Ok(basket);
         }
 
         private async Task<ListBasketResponse> GetOrCreateBasketForUser(string userName)
